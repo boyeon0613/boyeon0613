@@ -1,0 +1,13 @@
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\bin\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.exe
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\bin\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.deps.json
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\bin\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.runtimeconfig.json
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\bin\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.runtimeconfig.dev.json
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\bin\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.dll
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\bin\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.pdb
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\obj\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.csproj.AssemblyReference.cache
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\obj\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.AssemblyInfoInputs.cache
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\obj\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.AssemblyInfo.cs
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\obj\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.csproj.CoreCompileInputs.cache
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\obj\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.dll
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\obj\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.pdb
+C:\Users\admin\source\repos\ConsoleApp1\UnityLesson_Csharp_IF\obj\Debug\netcoreapp3.1\UnityLesson_Csharp_IF.genruntimeconfig.cache
