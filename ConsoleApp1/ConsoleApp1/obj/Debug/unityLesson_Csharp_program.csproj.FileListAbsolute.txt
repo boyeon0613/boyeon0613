@@ -4,3 +4,10 @@ C:\Users\admin\source\repos\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
 C:\Users\admin\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\unityLesson_Csharp_program.csproj.CoreCompileInputs.cache
 C:\Users\admin\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
 C:\Users\admin\source\repos\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
+C:\Users\duaan\OneDrive\문서\GitHub\boyeon0613\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe.config
+C:\Users\duaan\OneDrive\문서\GitHub\boyeon0613\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.exe
+C:\Users\duaan\OneDrive\문서\GitHub\boyeon0613\ConsoleApp1\ConsoleApp1\bin\Debug\ConsoleApp1.pdb
+C:\Users\duaan\OneDrive\문서\GitHub\boyeon0613\ConsoleApp1\ConsoleApp1\obj\Debug\unityLesson_Csharp_program.csprojAssemblyReference.cache
+C:\Users\duaan\OneDrive\문서\GitHub\boyeon0613\ConsoleApp1\ConsoleApp1\obj\Debug\unityLesson_Csharp_program.csproj.CoreCompileInputs.cache
+C:\Users\duaan\OneDrive\문서\GitHub\boyeon0613\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.exe
+C:\Users\duaan\OneDrive\문서\GitHub\boyeon0613\ConsoleApp1\ConsoleApp1\obj\Debug\ConsoleApp1.pdb
