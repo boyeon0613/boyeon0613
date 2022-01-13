@@ -20,7 +20,17 @@
       "ProjectGuid": "575a8e34-0a13-44b2-a0c4-85dba1a98935",
       "DisplayName": "UnityLesson_Csharp_IF",
       "ColorIndex": 3
+    },
+    "26c7dbbb-967c-4dd0-9859-a90c91fcfadd": {
+      "ProjectGuid": "26c7dbbb-967c-4dd0-9859-a90c91fcfadd",
+      "DisplayName": "UnityLesson_CSharp_variables",
+      "ColorIndex": 4
+    },
+    "2c5eb683-fa8b-4cf4-b9cc-eeeb505dd852": {
+      "ProjectGuid": "2c5eb683-fa8b-4cf4-b9cc-eeeb505dd852",
+      "DisplayName": "UnityLesson_CSharp_Dice",
+      "ColorIndex": 5
     }
   },
-  "NextColorIndex": 4
+  "NextColorIndex": 6
 }
