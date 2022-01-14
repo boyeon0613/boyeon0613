@@ -14,7 +14,7 @@ namespace UnityLesson_CSharp_Dice
 
          virtual public void TileEvent()
         {
-            Console.WriteLine($"타일 이름은 {name}, 위치는 {index}, 설명은 {discription}이다");
+            Console.WriteLine($"타일 이름은 {name}, 위치는 {index}, 설명 : {discription}이다");
         }
     }
 }
