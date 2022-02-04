@@ -35,7 +35,17 @@
       "ProjectGuid": "4690edd8-dcb5-4a6e-8c66-3e1898cd4330",
       "DisplayName": "UnityLesson_CSharp_Function",
       "ColorIndex": 6
+    },
+    "526af8be-1c23-428d-a69b-d3de1cc2c1de": {
+      "ProjectGuid": "526af8be-1c23-428d-a69b-d3de1cc2c1de",
+      "DisplayName": "code",
+      "ColorIndex": 7
+    },
+    "1a167cf4-97fc-4069-a4e1-6873a60fc216": {
+      "ProjectGuid": "1a167cf4-97fc-4069-a4e1-6873a60fc216",
+      "DisplayName": "unityLesson_Csharp_program",
+      "ColorIndex": 8
     }
   },
-  "NextColorIndex": 7
+  "NextColorIndex": 9
 }

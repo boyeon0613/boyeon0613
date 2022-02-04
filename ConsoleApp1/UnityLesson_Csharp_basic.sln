@@ -15,7 +15,9 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnityLesson_CSharp_Delegate
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnityLesson_CSharp_HorseRacing", "UnityLesson_CSharp_HorseRacing\UnityLesson_CSharp_HorseRacing.csproj", "{D8A404D1-7ED6-4A8E-9BAC-A211B86FC4E9}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "UnityLesson_CSharp_Dice", "UnityLesson_CSharp_Dice\UnityLesson_CSharp_Dice.csproj", "{2C5EB683-FA8B-4CF4-B9CC-EEEB505DD852}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "UnityLesson_CSharp_Dice", "UnityLesson_CSharp_Dice\UnityLesson_CSharp_Dice.csproj", "{2C5EB683-FA8B-4CF4-B9CC-EEEB505DD852}"
+EndProject
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "code", "ConsoleApp2\code.csproj", "{526AF8BE-1C23-428D-A69B-D3DE1CC2C1DE}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -51,6 +53,10 @@ Global
 		{2C5EB683-FA8B-4CF4-B9CC-EEEB505DD852}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{2C5EB683-FA8B-4CF4-B9CC-EEEB505DD852}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{2C5EB683-FA8B-4CF4-B9CC-EEEB505DD852}.Release|Any CPU.Build.0 = Release|Any CPU
+		{526AF8BE-1C23-428D-A69B-D3DE1CC2C1DE}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{526AF8BE-1C23-428D-A69B-D3DE1CC2C1DE}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{526AF8BE-1C23-428D-A69B-D3DE1CC2C1DE}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{526AF8BE-1C23-428D-A69B-D3DE1CC2C1DE}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
