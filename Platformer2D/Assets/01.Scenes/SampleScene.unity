@@ -247,7 +247,7 @@ Rigidbody2D:
   m_Interpolate: 0
   m_SleepingMode: 1
   m_CollisionDetection: 0
-  m_Constraints: 0
+  m_Constraints: 4
 --- !u!70 &717833093
 CapsuleCollider2D:
   m_ObjectHideFlags: 0
@@ -344,6 +344,10 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   moveSpeed: 2
   jumpForce: 5
+  playerState: 0
+  jumpState: 0
+  runState: 0
+  attackState: 0
 --- !u!114 &717833097
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -357,6 +361,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   size: {x: 0, y: 0}
+  groudLayer:
+    serializedVersion: 2
+    m_Bits: 512
   isGrounded: 0
 --- !u!1 &1279794526
 GameObject:
@@ -368,6 +375,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1279794527}
   - component: {fileID: 1279794528}
+  - component: {fileID: 1279794529}
   m_Layer: 0
   m_Name: Renderer
   m_TagString: Untagged
@@ -440,6 +448,25 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
+--- !u!95 &1279794529
+Animator:
+  serializedVersion: 3
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1279794526}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 6b22e6e9f51000847abb836a0bf84209, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorControllerStateOnDisable: 0
 --- !u!1 &1349374386
 GameObject:
   m_ObjectHideFlags: 0
@@ -483,7 +510,7 @@ BoxCollider2D:
   m_AutoTiling: 0
   serializedVersion: 2
   m_Size: {x: 1, y: 1}
-  m_EdgeRadius: 0.1
+  m_EdgeRadius: 0
 --- !u!212 &1349374388
 SpriteRenderer:
   m_ObjectHideFlags: 0
