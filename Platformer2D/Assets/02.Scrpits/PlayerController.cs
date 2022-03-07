@@ -12,7 +12,7 @@ public class PlayerController : MonoBehaviour
     Vector2 move; // direction vector(방향 벡터), 여기서는 크기가 1 넘어가도 사용함.
 
     int _direction;
-    int direction
+    public int direction
     {
         set
         {
@@ -24,6 +24,7 @@ public class PlayerController : MonoBehaviour
         }
         get { return _direction; }
     }
+    int directionInit = 1;
     // States    
     public PlayerState playerState;
     public JumpState jumpState;
@@ -31,6 +32,8 @@ public class PlayerController : MonoBehaviour
     public AttackState attackState;
     public DashState dashState;
     public DashAttackState dashAttackState;
+    public EdgeGrabState edgeGrabState;
+    Player player;
 
     public bool isAttacking
     {
@@ -43,6 +46,8 @@ public class PlayerController : MonoBehaviour
 
     // Detectors
     PlayerGroundDetector groundDetector;
+    PlayerEdgeDetector edgeDetector;
+
 
     // animation
     Animator animator;
@@ -50,13 +55,27 @@ public class PlayerController : MonoBehaviour
     float attackTime;
     float dashTime;
     float dashAttackTime;
+
+    //kinematics
+    public Vector2 knockBackForce;
+
+    //casting
+    public Vector2 attackCastingCenter;
+    public Vector2 attackCastingSize;
+    public Vector2 attackCastingDirection;
+    public LayerMask attackTargetLayer;
+    public int attackDamage = 5;
+
     private void Awake()
     {
+        player = GetComponent<Player>();
         tr = GetComponent<Transform>();
         rb = GetComponent<Rigidbody2D>();
         col = GetComponent<BoxCollider2D>();
         groundDetector = GetComponent<PlayerGroundDetector>();
+        edgeDetector = GetComponent<PlayerEdgeDetector>();
         animator = GetComponentInChildren<Animator>();
+        
 
         attackTime = GetAnimationTime("Attack");
         dashTime = GetAnimationTime("Dash");
@@ -144,23 +163,13 @@ public class PlayerController : MonoBehaviour
             }
             ChangePlayerState(tmpStateToChage);
          }
+        Debug.Log(playerState);
 
-        //Attack action
-        if (isAttacking == false && Input.GetKeyDown(KeyCode.A))
+        //edge grab
+        if(edgeDetector.isDetected 
+           && playerState != PlayerState.EdgeGrab && Input.GetKey(KeyCode.UpArrow))
         {
-            playerState = PlayerState.Attack;
-            attackState = AttackState.PrepareToAttack;
-
-            if(playerState == PlayerState.Dash)
-            {
-                playerState = PlayerState.DashAttack;
-                dashAttackState = DashAttackState.PrepareToDashAttack;
-            }
-        }
-        if (isAttacking == false && playerState == PlayerState.Dash && Input.GetKeyDown(KeyCode.A))
-        {
-            playerState = PlayerState.DashAttack;
-            dashAttackState = DashAttackState.PrepareToDashAttack;
+            ChangePlayerState(PlayerState.EdgeGrab);
         }
         UpdatePlayerState();
     }
@@ -197,6 +206,9 @@ public class PlayerController : MonoBehaviour
             case PlayerState.DashAttack:
                 dashAttackState = DashAttackState.Idle;
                 break;
+            case PlayerState.EdgeGrab:
+                edgeGrabState = EdgeGrabState.Idle;
+                break;
             default:
                 break;
         }
@@ -217,6 +229,9 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.DashAttack:
                 dashAttackState = DashAttackState.PrepareToDashAttack;
+                break;
+            case PlayerState.EdgeGrab:
+                edgeGrabState = EdgeGrabState.PrepareToEdgeGrab;
                 break;
             default:
                 break;
@@ -244,6 +259,9 @@ public class PlayerController : MonoBehaviour
                 break;
             case PlayerState.DashAttack:
                 UpdateDashAttackState();
+                break;
+            case PlayerState.EdgeGrab:
+                UpdateEdgeGrab();
                 break;
             default:
                 break;
@@ -300,8 +318,22 @@ public class PlayerController : MonoBehaviour
             case AttackState.Attacking:
                 if (animationTimeElapsed>attackTime)
                 {
+                    RaycastHit2D hit = Physics2D.BoxCast(rb.position + attackCastingCenter,
+                                                        attackCastingSize,
+                                                        0f,
+                                                        attackCastingDirection,
+                                                        attackTargetLayer);
+                    if(hit.collider != null)
+                    {
+                        Enemy enemy = null;
+                        if(hit.collider.TryGetComponent(out enemy))
+                        {
+                            enemy.hp -= attackDamage;
+                        }
+                    }
                     attackState = AttackState.Attacked;
                 }
+           
                 animationTimeElapsed += Time.deltaTime;
                 break;
             case AttackState.Attacked:
@@ -309,6 +341,31 @@ public class PlayerController : MonoBehaviour
                 attackState = AttackState.Idle;
                 animationTimeElapsed = 0;
                 animator.Play("Idle");
+                break;
+        }
+    }
+    void UpdateEdgeGrab()
+    {
+        switch (edgeGrabState)
+        {
+            case EdgeGrabState.Idle:
+                break;
+            case EdgeGrabState.PrepareToEdgeGrab:
+                animator.Play("EdgeGrabIdle");
+                rb.bodyType = RigidbodyType2D.Kinematic;
+                move = Vector2.zero;
+                rb.velocity = Vector2.zero;
+                rb.position = edgeDetector.targetPlayerPos;
+                edgeGrabState = EdgeGrabState.Grabbed;
+                break;
+            case EdgeGrabState.Grabbing:
+                break;
+            case EdgeGrabState.Grabbed:
+                if(Input.GetKey(KeyCode.DownArrow))
+                rb.bodyType = RigidbodyType2D.Dynamic;
+                //do nothing
+                break;
+            default:
                 break;
         }
     }
@@ -363,7 +420,7 @@ private void UpdateDashAttackState()
             case DashAttackState.DashAttacking:
                 if (animationTimeElapsed < dashAttackTime * 1 / 4)
                 {
-                    move.x = direction * moveSpeed / 4;
+                    move.x = direction * moveSpeed / 3;
                 }
                 else if(animationTimeElapsed < dashAttackTime * 3 / 4)
                 {
@@ -377,9 +434,9 @@ private void UpdateDashAttackState()
                 break;
 
             case DashAttackState.DashAttacked:
-                if(animationTimeElapsed < dashAttackTime)
+                if(animationTimeElapsed > dashAttackTime)
                 {
-                    move.x=direction*moveSpeed * 4;
+                    move.x=direction*moveSpeed * 4f;
                 }
                 else
                 {
@@ -415,6 +472,21 @@ private void UpdateDashAttackState()
         return isOK;
     }
 
+    public void KnockBack()
+    {
+        if(player.invincible)
+        move = Vector2.zero;
+        rb.velocity = Vector2.zero;
+        rb.AddForce(new Vector2(knockBackForce.x * (-direction), knockBackForce.y), ForceMode2D.Impulse);
+    }
+    private void OnDrawGizmos()
+    {
+        Gizmos.color = Color.red;
+        Gizmos.DrawWireCube(new Vector3(transform.position.x + attackCastingCenter.x,
+                                        transform.position.y + attackCastingCenter.y,
+                                        0f),
+                                        new Vector3(attackCastingSize.x, attackCastingSize.y, 0f));
+    }
     public enum PlayerState
     {
         Idle,
@@ -422,7 +494,8 @@ private void UpdateDashAttackState()
         Jump,
         Attack,
         Dash,
-        DashAttack
+        DashAttack,
+        EdgeGrab
     }
     public enum JumpState
     {
@@ -458,5 +531,12 @@ private void UpdateDashAttackState()
         PrepareToDashAttack,
         DashAttacking,
         DashAttacked
+    }
+    public enum EdgeGrabState
+    {
+        Idle,
+        PrepareToEdgeGrab,
+        Grabbing,
+        Grabbed
     }
 }
