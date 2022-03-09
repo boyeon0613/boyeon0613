@@ -28,4 +28,26 @@ public class NoteManager : MonoBehaviour
         foreach (NoteData note in notes)
             queue.Enqueue(note);
     }
+    public void StartSpawn()
+    {
+        if(queue.Count > 0)
+            StartCoroutine(E_SpawnNotes());
+    }
+    IEnumerable E_SpawnNotes()
+    {
+        while (queue.Count > 0)
+        {
+            for (int i = 0; i < queue.Count; i++)
+            {
+                if (queue.Peek().time < GamePlay.instance.playTime)
+                {
+                    NoteData data = queue.Dequeue();
+                    spawners[data.keyCode].SpawnNote();
+                }
+                else
+                    break;
+            }
+            yield return null;
+        }
+    }
 }
