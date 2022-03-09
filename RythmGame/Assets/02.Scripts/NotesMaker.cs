@@ -6,7 +6,7 @@ using UnityEngine.Video;
 public class NotesMaker : MonoBehaviour
 {
     SongData songData;
-    KeyCode[] keyCodes = { KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.Space, KeyCode.J, KeyCode.L };
+    KeyCode[] keyCodes = { KeyCode.S, KeyCode.D, KeyCode.F, KeyCode.Space, KeyCode.J, KeyCode.K, KeyCode.L };
     public VideoPlayer vp;
 
     public bool onRecord
