@@ -6,7 +6,6 @@ public class Note : MonoBehaviour
 {
     public KeyCode keyCode;
     Transform tr;
-    public float noteSpeed;
     private void Awake()
     {
         tr = transform;
@@ -17,7 +16,7 @@ public class Note : MonoBehaviour
     }
     private void Move()
     {
-        tr.Translate(Vector2.down * noteSpeed * Time.deltaTime);
+        tr.Translate(Vector2.down * NoteManager.noteFallingSpeed * Time.deltaTime);
     }
     public void Hit(HitType type)
     {
