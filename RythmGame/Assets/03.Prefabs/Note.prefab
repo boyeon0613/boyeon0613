@@ -11,7 +11,7 @@ GameObject:
   - component: {fileID: 1248907920125637692}
   - component: {fileID: 6332472635176302180}
   - component: {fileID: -8875413571900377326}
-  m_Layer: 0
+  m_Layer: 10
   m_Name: Note
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -96,4 +96,3 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   keyCode: 0
-  noteSpeed: 0

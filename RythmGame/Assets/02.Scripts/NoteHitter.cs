@@ -16,9 +16,9 @@ public class NoteHitter : MonoBehaviour
     private void Awake()
     {
         tr = transform;
-        icon.color = originColor;
+        originColor=icon.color;
     }
-    void update()
+    void Update()
     {
         if (Input.GetKeyDown(keyCode))
             TryHitNote();
@@ -30,10 +30,12 @@ public class NoteHitter : MonoBehaviour
     }
     private void ChangeColor()
     {
+        Debug.Log("Change color");
         icon.color = pressedColor;
     }
     private void ClearColor()
     {
+        Debug.Log("Clear color");
         icon.color = originColor;
     }
 

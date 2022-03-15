@@ -133,7 +133,6 @@ GameObject:
   m_Component:
   - component: {fileID: 155448069}
   - component: {fileID: 155448070}
-  - component: {fileID: 155448072}
   - component: {fileID: 155448071}
   m_Layer: 10
   m_Name: NoteHitter_4
@@ -219,30 +218,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cb38846563532408cf48372a29415c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyCode: 0
+  keyCode: 32
   noteLayer:
     serializedVersion: 2
-    m_Bits: 0
-  icon: {fileID: 0}
-  pressedColor: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &155448072
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 155448068}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34cb38846563532408cf48372a29415c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyCode: 0
-  noteLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  icon: {fileID: 0}
-  pressedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_Bits: 1024
+  icon: {fileID: 155448070}
+  pressedColor: {r: 0.4433962, g: 0.11921501, b: 0.11921501, a: 1}
 --- !u!1 &243540534
 GameObject:
   m_ObjectHideFlags: 0
@@ -366,7 +347,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 245587464}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 0.41899997, y: 0.00000059604645, z: -1}
+  m_LocalPosition: {x: 0.41899997, y: 0, z: -1}
   m_LocalScale: {x: 0.12, y: 0.5, z: 1}
   m_Children: []
   m_Father: {fileID: 1800130877}
@@ -742,7 +723,6 @@ GameObject:
   m_Component:
   - component: {fileID: 446083106}
   - component: {fileID: 446083107}
-  - component: {fileID: 446083109}
   - component: {fileID: 446083108}
   m_Layer: 10
   m_Name: NoteHitter_7
@@ -828,30 +808,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cb38846563532408cf48372a29415c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyCode: 0
+  keyCode: 108
   noteLayer:
     serializedVersion: 2
-    m_Bits: 0
-  icon: {fileID: 0}
-  pressedColor: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &446083109
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 446083105}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34cb38846563532408cf48372a29415c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyCode: 0
-  noteLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  icon: {fileID: 0}
-  pressedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_Bits: 1024
+  icon: {fileID: 446083107}
+  pressedColor: {r: 0.07329121, g: 0.47645018, b: 0.5754717, a: 1}
 --- !u!1 &460688217
 GameObject:
   m_ObjectHideFlags: 0
@@ -1207,7 +1169,7 @@ VideoPlayer:
   m_TimeReference: 0
   m_TargetMaterialRenderer: {fileID: 0}
   m_TargetMaterialProperty: _MainTex
-  m_RenderMode: 1
+  m_RenderMode: 0
   m_AspectRatio: 2
   m_DataSource: 0
   m_PlaybackSpeed: 1
@@ -1432,12 +1394,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cb38846563532408cf48372a29415c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyCode: 0
+  keyCode: 107
   noteLayer:
     serializedVersion: 2
-    m_Bits: 0
-  icon: {fileID: 0}
-  pressedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_Bits: 1024
+  icon: {fileID: 1262545117}
+  pressedColor: {r: 0.09656461, g: 0.6603774, b: 0.30329603, a: 1}
 --- !u!1 &1533487654
 GameObject:
   m_ObjectHideFlags: 0
@@ -1890,7 +1852,6 @@ GameObject:
   m_Component:
   - component: {fileID: 1994347927}
   - component: {fileID: 1994347928}
-  - component: {fileID: 1994347930}
   - component: {fileID: 1994347929}
   m_Layer: 10
   m_Name: NoteHitter_5
@@ -1976,30 +1937,12 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 34cb38846563532408cf48372a29415c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  keyCode: 0
+  keyCode: 106
   noteLayer:
     serializedVersion: 2
-    m_Bits: 0
-  icon: {fileID: 0}
-  pressedColor: {r: 0, g: 0, b: 0, a: 0}
---- !u!114 &1994347930
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1994347926}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 34cb38846563532408cf48372a29415c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  keyCode: 0
-  noteLayer:
-    serializedVersion: 2
-    m_Bits: 0
-  icon: {fileID: 0}
-  pressedColor: {r: 0, g: 0, b: 0, a: 0}
+    m_Bits: 1024
+  icon: {fileID: 1994347928}
+  pressedColor: {r: 0.735849, g: 0.7136843, b: 0.21867211, a: 1}
 --- !u!1 &2123446709
 GameObject:
   m_ObjectHideFlags: 0
