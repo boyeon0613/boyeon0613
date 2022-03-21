@@ -97,8 +97,8 @@ LightmapSettings:
     m_ExportTrainingData: 0
     m_TrainingDataDestination: TrainingData
     m_LightProbeSampleCountMultiplier: 4
-  m_LightingDataAsset: {fileID: 0}
-  m_LightingSettings: {fileID: 0}
+  m_LightingDataAsset: {fileID: 112000000, guid: ad0bed507c7a9ed4b991ccc1ad9c7c27, type: 2}
+  m_LightingSettings: {fileID: 4890085278179872738, guid: 6158507fe875ed446ba7969f104a9783, type: 2}
 --- !u!196 &4
 NavMeshSettings:
   serializedVersion: 2
@@ -3579,7 +3579,7 @@ GameObject:
   - component: {fileID: 879114122}
   - component: {fileID: 879114126}
   m_Layer: 0
-  m_Name: Enemy
+  m_Name: EnemySpawner
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -3605,7 +3605,7 @@ MeshRenderer:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 879114121}
-  m_Enabled: 1
+  m_Enabled: 0
   m_CastShadows: 1
   m_ReceiveShadows: 1
   m_DynamicOccludee: 1
@@ -3670,10 +3670,20 @@ MonoBehaviour:
   m_GameObject: {fileID: 879114121}
   m_Enabled: 1
   m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: f9d6d518e15ef684e939fd561ac2dc46, type: 3}
+  m_Script: {fileID: 11500000, guid: 653b6fb9501e2174a9dac21c0dd8c31b, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  speed: 1
+  spawnElements:
+  - poolElement:
+      tag: Cube
+      prefab: {fileID: 4040446287904720536, guid: 9ba5d585c9b102e43b9ea8a294ba10d4, type: 3}
+      size: 5
+    spawnTimeGap: 1
+  - poolElement:
+      tag: Sphere
+      prefab: {fileID: 3634545485329875263, guid: 702582f8b3d680841a6ee9495d4fc2ba, type: 3}
+      size: 10
+    spawnTimeGap: 1
 --- !u!1 &884771032
 GameObject:
   m_ObjectHideFlags: 0
@@ -8710,7 +8720,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1416392039}
   m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
-  m_LocalPosition: {x: 0.5, y: 0, z: 0.75}
+  m_LocalPosition: {x: 0, y: 0, z: 0.75}
   m_LocalScale: {x: 1.5, y: 0.5, z: 1.5}
   m_Children: []
   m_Father: {fileID: 1479545208}

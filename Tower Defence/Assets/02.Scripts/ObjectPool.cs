@@ -33,7 +33,33 @@ public class ObjectPool : MonoBehaviour
                GameObject obj = CreateNewObject(poolElement.tag, poolElement.prefab);
                ArrangePool(obj);
             }
+        }  
+    }
+    public static GameObject SpawnFromPool(string tag, Vector3 position) =>
+        instance.Spawn(tag, position);
+
+    private GameObject Spawn(string tag, Vector3 position)
+    {
+        if (!spawnedQueueDictionary.ContainsKey(tag))
+            throw new System.Exception($"Pool doesn't contains {tag}");
+       
+        Queue<GameObject> queue = spawnedQueueDictionary[tag];
+        if(queue.Count == 0)
+        {
+            foreach (var item in poolElements)
+            {
+                PoolElement poolElement = poolElements.Find(x => x.tag == tag);
+                GameObject obj = CreateNewObject(poolElement.tag, poolElement.prefab);
+                
+                ArrangePool(obj);
+            }
         }
+        GameObject objectToSpawn = queue.Dequeue();
+        objectToSpawn.transform.position = position;
+        objectToSpawn.transform.rotation = Quaternion.identity;
+        objectToSpawn.SetActive(true);
+
+        return objectToSpawn;
     }
     private GameObject CreateNewObject(string tag, GameObject prefab)
     {
@@ -42,6 +68,26 @@ public class ObjectPool : MonoBehaviour
         obj.SetActive(false);
         return obj;
     }
+    public static void ReturnToPool(GameObject obj)
+    {
+        if (!instance.spawnedQueueDictionary.ContainsKey(obj.name))
+        {
+            throw new System.Exception($"Pool doesn't include {obj.name}");
+        }
+        instance.spawnedQueueDictionary[obj.name].Enqueue(obj);
+
+    }
+    public static int GetSpawnedObjectNumber(string tag)
+    {
+        int count = 0;
+        foreach(var go in instance.spawnedObjects)
+        {
+            if (go.name == tag &&
+                go.activeSelf)
+                count++;
+        }
+        return count;
+    }    
 
     private void ArrangePool(GameObject obj)
     {
@@ -62,6 +108,7 @@ public class ObjectPool : MonoBehaviour
                 spawnedObjects.Insert(i, obj);
                 break;
             }
+ 
         }
     }
 }
