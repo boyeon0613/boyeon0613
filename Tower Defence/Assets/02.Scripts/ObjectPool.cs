@@ -25,15 +25,21 @@ public class ObjectPool : MonoBehaviour
 
     private void Start()
     {
-        foreach(PoolElement poolElement in poolElements)
+        StartCoroutine(E_Start());
+    }
+    IEnumerator E_Start()
+    {
+        yield return new WaitUntil(() => TowerAssets.instance != null);
+        foreach (PoolElement poolElement in poolElements)
         {
             spawnedQueueDictionary.Add(poolElement.tag, new Queue<GameObject>());
             for (int i = 0; i < poolElement.size; i++)
             {
-               GameObject obj = CreateNewObject(poolElement.tag, poolElement.prefab);
-               ArrangePool(obj);
+                GameObject obj = CreateNewObject(poolElement.tag, poolElement.prefab);
+                ArrangePool(obj);
             }
-        }  
+        }
+
     }
     public static GameObject SpawnFromPool(string tag, Vector3 position) =>
         instance.Spawn(tag, position);
@@ -108,7 +114,6 @@ public class ObjectPool : MonoBehaviour
                 spawnedObjects.Insert(i, obj);
                 break;
             }
- 
         }
     }
 }
