@@ -44,6 +44,7 @@ public class TowerViewPresenter : MonoBehaviour
     {
         selectedTowerHandler = towerHandler;
     }
+
     public Transform GetTowerPreviewTransform()
     {
         return selectedTowerHandler.towerPreviewObject.transform;
