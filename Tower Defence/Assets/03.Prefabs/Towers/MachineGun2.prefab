@@ -9,6 +9,7 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 1847186365746322318}
+  - component: {fileID: 840853657221480251}
   m_Layer: 0
   m_Name: MachineGun2
   m_TagString: Untagged
@@ -32,6 +33,24 @@ Transform:
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &840853657221480251
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 5297419510737160825}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9889e0396c0ce342aa95cbd3f392c63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  info: {fileID: 11400000, guid: 2f8c90385ee6fc245b6a48b4026b8586, type: 2}
+  enemyLayer:
+    serializedVersion: 2
+    m_Bits: 1048576
+  detectRange: 2
+  turretRotationPoint: {fileID: 5588257714320647747}
 --- !u!1001 &3014205897533019645
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -49,15 +68,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eef9d1528875a43edb151eb2f6326ff4, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eef9d1528875a43edb151eb2f6326ff4, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eef9d1528875a43edb151eb2f6326ff4, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: eef9d1528875a43edb151eb2f6326ff4, type: 3}
       propertyPath: m_LocalPosition.x
@@ -102,7 +121,7 @@ PrefabInstance:
     - target: {fileID: 2300000, guid: eef9d1528875a43edb151eb2f6326ff4, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c2ff0ddac1f8dc849bd3bc204da1e0a3, type: 2}
+      objectReference: {fileID: 2100000, guid: 61ddf07089ea21843881ee5caa06b7f5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: eef9d1528875a43edb151eb2f6326ff4, type: 3}
 --- !u!4 &3014205897532624765 stripped
@@ -127,15 +146,15 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b29d7ff11c99340e38246a09f771946f, type: 3}
       propertyPath: m_LocalScale.x
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b29d7ff11c99340e38246a09f771946f, type: 3}
       propertyPath: m_LocalScale.y
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b29d7ff11c99340e38246a09f771946f, type: 3}
       propertyPath: m_LocalScale.z
-      value: 0.5
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 400000, guid: b29d7ff11c99340e38246a09f771946f, type: 3}
       propertyPath: m_LocalPosition.x
@@ -180,7 +199,7 @@ PrefabInstance:
     - target: {fileID: 2300000, guid: b29d7ff11c99340e38246a09f771946f, type: 3}
       propertyPath: m_Materials.Array.data[0]
       value: 
-      objectReference: {fileID: 2100000, guid: c2ff0ddac1f8dc849bd3bc204da1e0a3, type: 2}
+      objectReference: {fileID: 2100000, guid: 61ddf07089ea21843881ee5caa06b7f5, type: 2}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b29d7ff11c99340e38246a09f771946f, type: 3}
 --- !u!4 &5588257714320647747 stripped

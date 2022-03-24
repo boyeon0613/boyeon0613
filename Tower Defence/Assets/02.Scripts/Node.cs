@@ -8,10 +8,10 @@ public class Node : MonoBehaviour
     {
         get 
         {
-            return towerInfo != null; 
+            return tower != null; 
         }
     }
-    public TowerInfo towerInfo;
+    public Tower tower;
 
     public Color originColor;
     public Color buildAvailableColor;
@@ -53,8 +53,8 @@ public class Node : MonoBehaviour
                 TowerViewPresenter.instance.isSelected == false)
             {
                 Debug.Log("Set ui here");
-                TowerUI.instance.upgradePriceText.text = towerInfo.price.ToString();
-                TowerUI.instance.sellPriceText.text = (towerInfo.price * 0.8).ToString();
+                TowerUI.instance.upgradePriceText.text = tower.info.price.ToString();
+                TowerUI.instance.sellPriceText.text = (tower.info.price * 0.8).ToString();
                 TowerUI.instance.transform.position = transform.position+Vector3.up*2;
                 TowerUI.instance.node = this;
                 TowerUI.instance.gameObject.SetActive(true);
@@ -65,18 +65,8 @@ public class Node : MonoBehaviour
                 Transform previewTrasnform = TowerViewPresenter.instance.GetTowerPreviewTransform();
                 string towerName = previewTrasnform.GetComponent<TowerPreview>().towerName;
 
-                ObjectPool.SpawnFromPool(towerName,
-                                         previewTrasnform.position);
-
-                if(TowerAssets.instance.TryGetTowerInfoByName(towerName, out TowerInfo tmptowerInfo))
-                {
-                    //todo => spend mone : towerInfo.price
-                    towerInfo = tmptowerInfo;
-                }
-                else
-                {
-                    Debug.Log($"Failed to get tower info of {towerName}");
-                }
+                BuildTowerHere(towerName);
+               
                 previewTrasnform.gameObject.SetActive(false);
                 TowerViewPresenter.instance.SetTowerHandler(null);
             }
@@ -86,6 +76,25 @@ public class Node : MonoBehaviour
         {
             TowerViewPresenter.instance.SetTowerHandler(null);
         }
+    }
+
+    public void BuildTowerHere(string towerName)
+    {
+        //when tower already exist
+        if(tower != null)
+        {
+           tower.gameObject.SetActive(false);
+        }
+
+        GameObject towerGameObject = ObjectPool.SpawnFromPool(towerName,
+                                     transform.position + new Vector3(0, col.size.y / 2, 0));
+        tower = towerGameObject.GetComponent<Tower>();
+    }
+
+    public void DestroyTowerHere()
+    {
+        tower.gameObject.SetActive(false);
+        tower = null;
     }
 
     //필요한 클래스

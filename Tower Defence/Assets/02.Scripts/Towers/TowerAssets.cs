@@ -36,14 +36,18 @@ public class TowerAssets : MonoBehaviour
     }
     public bool TryGetTowerName(TowerType type, int level, out string towerName)
     {
-        towerName = towers.Find(x => x.GetComponent<Tower>().info.type == type && 
-                         x.GetComponent<Tower>().info.level == level).name;
+        towerName = String.Empty;
+
+        if(level<4)
+        {
+            towerName = towers.Find(x => x.name == type.ToString() + level.ToString()).name;
+        }
         return towerName.Length > 1 ? true : false;
     }
 
-    public bool TryGetTowerInfoByName(string towerName, out TowerInfo towerInfo)
+    public bool TryGetTowerByName(string towerName, out Tower tower)
     {
-        towerInfo = towers.Find(x => x.name == towerName).GetComponent<Tower>().info;
-        return towerInfo != null ? true : false;
+        tower = towers.Find(x => x.name == towerName).GetComponent<Tower>();
+        return tower != null ? true : false;
     }
 }
