@@ -57,18 +57,22 @@
     <Compile Include="Assets\02.Scripts\WayPoints.cs" />
     <Compile Include="Assets\02.Scripts\Towers\TowerPreview.cs" />
     <Compile Include="Assets\02.Scripts\LevelSelector.cs" />
+    <Compile Include="Assets\02.Scripts\Player.cs" />
     <Compile Include="Assets\02.Scripts\EnemyMove.cs" />
     <Compile Include="Assets\02.Scripts\TowerHandler.cs" />
     <Compile Include="Assets\02.Scripts\EnemySpawner.cs" />
+    <Compile Include="Assets\towerUI.cs" />
     <Compile Include="Assets\02.Scripts\GameManager.cs" />
     <Compile Include="Assets\02.Scripts\ObjectPool.cs" />
     <Compile Include="Assets\02.Scripts\TowerViewPresenter.cs" />
     <Compile Include="Assets\02.Scripts\Towers\TowerAssets.cs" />
     <Compile Include="Assets\02.Scripts\Node.cs" />
     <Compile Include="Assets\02.Scripts\Towers\Tower.cs" />
-    <Compile Include="Assets\02.Scripts\Player.cs" />
     <Compile Include="Assets\02.Scripts\TowerUI.cs" />
-    <Compile Include="Assets\towerUI.cs" />
+    <Compile Include="Assets\02.Scripts\Towers\Tower_MachineGun.cs" />
+    <Compile Include="Assets\02.Scripts\Enemy.cs" />
+    <Compile Include="Assets\02.Scripts\Tower_Missile.cs" />
+    <Compile Include="Assets\02.Scripts\Missile.cs" />
   </ItemGroup>
   <ItemGroup>
     <Reference Include="UnityEngine">
