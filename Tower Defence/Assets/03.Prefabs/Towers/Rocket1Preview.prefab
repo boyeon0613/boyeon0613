@@ -10,7 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6080586007424677836}
   - component: {fileID: -236144494659188859}
-  m_Layer: 0
+  m_Layer: 15
   m_Name: Rocket1Preview
   m_TagString: Untagged
   m_Icon: {fileID: 0}

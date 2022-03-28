@@ -8624,13 +8624,11 @@ MonoBehaviour:
       prefab: {fileID: 3634545485329875263, guid: 702582f8b3d680841a6ee9495d4fc2ba, type: 3}
       size: 5
     spawnTimeGap: 3
-    done: 0
   - poolElement:
       tag: 2
       prefab: {fileID: 4040446287904720536, guid: 9ba5d585c9b102e43b9ea8a294ba10d4, type: 3}
       size: 5
     spawnTimeGap: 2
-    done: 0
 --- !u!4 &1262729808
 Transform:
   m_ObjectHideFlags: 0
