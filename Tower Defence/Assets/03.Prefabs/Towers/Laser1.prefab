@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 6080586007424677836}
   - component: {fileID: -4356051680751038358}
+  - component: {fileID: 8457874361746921235}
   m_Layer: 15
   m_Name: Laser1
   m_TagString: Untagged
@@ -57,6 +58,24 @@ MonoBehaviour:
   lineRenderer: {fileID: 5210966433881667408}
   firePoint: {fileID: 3149885575726773310}
   hitEffect: {fileID: 8228990830831927974}
+  buffSlow: {fileID: 8457874361746921235}
+  damage: 1
+  damageIncrementPercent: 30
+--- !u!114 &8457874361746921235
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6332950915776485344}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9fbdbfe76e7b7b3479446566f8d9ad58, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  duration: 9999
+  doBuff: 1
+  slowPercent: 50
 --- !u!1 &8601681251530621546
 GameObject:
   m_ObjectHideFlags: 0
