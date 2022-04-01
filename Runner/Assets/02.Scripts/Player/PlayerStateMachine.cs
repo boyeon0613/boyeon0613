@@ -6,10 +6,12 @@ using UnityEngine;
 public class PlayerStateMachine : MonoBehaviour
 {
     public State state;
+    public PlayerState playerState;
     public KeyCode keyCode;
-    public Animator animator;
+    [HideInInspector] public Animator animator;
+    [HideInInspector] public PlayerStateMachineManager manager;
 
-    private void Awake()
+    public virtual void Awake()
     {
         animator= GetComponent<Animator>();
     }
@@ -41,9 +43,25 @@ public class PlayerStateMachine : MonoBehaviour
     /// <summary>
     /// 머신 동작 업데이트
     /// </summary>
-    public virtual void UpdateState()
+    public virtual PlayerState UpdateState()
     {
-
+        PlayerState nextPlayerState = playerState;
+        switch (state)
+        {
+            case State.Idle:
+                break;
+            case State.Prepare:
+                break;
+            case State.Casting:
+                break;
+            case State.OnAction:
+                break;
+            case State.Finish:
+                break;
+            default:
+                break;
+        }
+        return nextPlayerState;
     }
 
     /// <summary>
