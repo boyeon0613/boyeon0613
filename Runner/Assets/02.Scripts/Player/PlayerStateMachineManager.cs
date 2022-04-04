@@ -12,6 +12,11 @@ public class PlayerStateMachineManager : MonoBehaviour
     private void Awake()
     {
        playerStateMachines = GetComponents<PlayerStateMachine>();
+        foreach (var playerStateMachine in playerStateMachines)
+        {
+            if (playerStateMachine.playerState == PlayerState.Idle)
+                currentMachine = playerStateMachine;
+        }
     }
 
     private void Update()
@@ -27,12 +32,17 @@ public class PlayerStateMachineManager : MonoBehaviour
     /// </summary>
     private void CompareKeyInput()
     {
+        //Execute 오류를 보기 전에 Debug.Log(playerStateMachines.Count);
         foreach (var machine in playerStateMachines)
         {
-            if (keyInput == machine.keyCode)
+            //Debug.Log(&"{keyCode},{keyInput}"); 먼저 이렇게 상위 조건들을 찾아보고 하기.
+            if (keyInput != KeyCode.None && keyInput == machine.keyCode)
             {
+                //Debug.Log($"{machine.IsExecuteOK()}"); 먼저 이렇게 상위 조건들을 찾아보고 하기.
+
                 if (machine.IsExecuteOK())
                 {
+                    currentMachine.ForceStop();
                     machine.Execute();
                     currentMachine = machine;
                     state = machine.playerState;
@@ -67,10 +77,11 @@ public class PlayerStateMachineManager : MonoBehaviour
         {
             // 해당 상태 머신이 있는지 체크 &&
             // 해당 상태 머신이 실행가능한지 체크
-            if(machine.playerState==newState &&
+            if (machine.playerState == newState &&
                 machine.IsExecuteOK())
             {
                 // 실행
+                currentMachine.ForceStop();
                 machine.Execute();
                 currentMachine = machine;
                 state = machine.playerState;

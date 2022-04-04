@@ -2,7 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class NewBehaviourScript : PlayerStateMachine
+public class PlayerStateMachine_Idle : PlayerStateMachine
 {
     public override PlayerState UpdateState()
     {

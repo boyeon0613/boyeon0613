@@ -14,6 +14,7 @@ public class PlayerStateMachine : MonoBehaviour
     public virtual void Awake()
     {
         animator= GetComponent<Animator>();
+        manager=GetComponent<PlayerStateMachineManager>();
     }
     //머신 동작 끝났는지 체크
     public bool isFinished
@@ -67,7 +68,7 @@ public class PlayerStateMachine : MonoBehaviour
     /// <summary>
     /// 머신 강제종료
     /// </summary>
-    public virtual void Stop()
+    public virtual void ForceStop()
     {
         state = State.Idle;
     }

@@ -2,9 +2,8 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
-public class PlayerStateMachine_Jump : PlayerStateMachine
+public class PlayerStateMachine_Fall : PlayerStateMachine   
 {
-    public float jumpForce;
     private GroundDetector groundDetector;
     private Rigidbody rb;
 
@@ -14,17 +13,16 @@ public class PlayerStateMachine_Jump : PlayerStateMachine
         groundDetector = GetComponent<GroundDetector>();
         rb = GetComponent<Rigidbody>();
     }
-
     public override bool IsExecuteOK()
     {
         bool isOK = false;
-        if (groundDetector.isDetected &&
-            (manager.state == PlayerState.Idle ||
-             manager.state == PlayerState.Run))
+        if (manager.state == PlayerState.Idle ||
+           manager.state == PlayerState.Run ||
+           manager.state == PlayerState.Jump)
             isOK = true;
-
-            return isOK;
+        return isOK;
     }
+
     public override PlayerState UpdateState()
     {
         PlayerState nextPlayerState = playerState;
@@ -33,22 +31,18 @@ public class PlayerStateMachine_Jump : PlayerStateMachine
             case State.Idle:
                 break;
             case State.Prepare:
-                rb.velocity = new Vector3(rb.velocity.x, 
-                                          0, 
-                                          rb.velocity.z);
-                rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
-                state = State.Casting;
+                animator.Play("Fall");
+                state++;
                 break;
             case State.Casting:
-                if (groundDetector.isDetected == false)
-                    state++;
+                state++;
                 break;
             case State.OnAction:
-                if (rb.velocity.y < 0)
+                if (groundDetector.isDetected)
                     state++;
-                break;
+                    break;
             case State.Finish:
-                nextPlayerState = PlayerState.Fall;
+                nextPlayerState = PlayerState.Idle;
                 break;
             default:
                 break;
