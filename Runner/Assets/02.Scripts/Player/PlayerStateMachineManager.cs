@@ -7,16 +7,72 @@ public class PlayerStateMachineManager : MonoBehaviour
     public PlayerState state;
     PlayerStateMachine[] playerStateMachines;
     PlayerStateMachine currentMachine;
+    PlayerStateMachine wallRunMachine;
     KeyCode keyInput;
 
+    PlayerPos _playerPos;
+
+    PlayerPos playerPos
+    {
+        set
+        {
+            switch (value)
+            {
+                case PlayerPos.Left:
+                    switch (_playerPos)
+                    {
+                        case PlayerPos.Center:
+                            _playerPos = PlayerPos.Left;
+                            break;
+                        case PlayerPos.Right:
+                            _playerPos = PlayerPos.Center;
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                case PlayerPos.Center:
+                    //do active skill?
+                    break;
+                case PlayerPos.Right:
+                    switch (_playerPos)
+                    {
+                        case PlayerPos.Left:
+                            _playerPos = PlayerPos.Center;
+                            break;
+                        case PlayerPos.Center:
+                            _playerPos = PlayerPos.Center;
+                            break;
+                        default:
+                            break;
+                    }
+                    break;
+                default:
+                    break;
+            }
+            MovePos();
+        }
+        get
+        {
+            return _playerPos;
+        }
+    }
+
+    [SerializeField] float leftPosX;
+    [SerializeField] float centerPosX;
+    [SerializeField] float rightPosX;
+
+    Transform tr;
     private void Awake()
     {
+        tr = transform;
        playerStateMachines = GetComponents<PlayerStateMachine>();
         foreach (var playerStateMachine in playerStateMachines)
         {
             if (playerStateMachine.playerState == PlayerState.Idle)
                 currentMachine = playerStateMachine;
         }
+        wallRunMachine = GetComponent<PlayerStateMachine_WallRun>();
     }
 
     private void Update()
@@ -25,6 +81,23 @@ public class PlayerStateMachineManager : MonoBehaviour
         UpdateMachineState();
     }
 
+    private void MovePos()
+    {
+        switch (_playerPos)
+        {
+            case PlayerPos.Left:
+                tr.position = new Vector3(leftPosX, tr.position.y, tr.position.z);
+                break;
+            case PlayerPos.Center:
+                tr.position = new Vector3(centerPosX, tr.position.y, tr.position.z);
+                break;
+            case PlayerPos.Right:
+                tr.position = new Vector3(rightPosX, tr.position.y, tr.position.z); ;
+                break;
+            default:
+                break;
+        }
+    }
     /// <summary>
     /// 유저의 키 입력에 맞는 머신이 있는지 체크하고
     /// 있으면 머신 실행 가능한지 체크하고
@@ -32,24 +105,38 @@ public class PlayerStateMachineManager : MonoBehaviour
     /// </summary>
     private void CompareKeyInput()
     {
-        //Execute 오류를 보기 전에 Debug.Log(playerStateMachines.Count);
-        foreach (var machine in playerStateMachines)
+        if (Input.GetKeyDown(KeyCode.LeftArrow))
         {
-            //Debug.Log(&"{keyCode},{keyInput}"); 먼저 이렇게 상위 조건들을 찾아보고 하기.
-            if (keyInput != KeyCode.None && keyInput == machine.keyCode)
+            if (wallRunMachine.IsExecuteOK())
+                currentMachine = wallRunMachine;
+            playerPos = PlayerPos.Left;
+        }
+        else if (Input.GetKeyDown(KeyCode.RightArrow))
+        {
+            playerPos = PlayerPos.Right;
+        }
+        else
+        {
+            //Execute 오류를 보기 전에 Debug.Log(playerStateMachines.Count);
+            foreach (var machine in playerStateMachines)
             {
-                //Debug.Log($"{machine.IsExecuteOK()}"); 먼저 이렇게 상위 조건들을 찾아보고 하기.
-
-                if (machine.IsExecuteOK())
+                //Debug.Log(&"{keyCode},{keyInput}"); 먼저 이렇게 상위 조건들을 찾아보고 하기.
+                if (keyInput != KeyCode.None &&
+                    keyInput == machine.keyCode)
                 {
-                    currentMachine.ForceStop();
-                    machine.Execute();
-                    currentMachine = machine;
-                    state = machine.playerState;
-                }
+                    //Debug.Log($"{machine.IsExecuteOK()}"); 먼저 이렇게 상위 조건들을 찾아보고 하기.
 
-                keyInput = KeyCode.None;
-                break;
+                    if (machine.IsExecuteOK())
+                    {
+                        currentMachine.ForceStop();
+                        machine.Execute();
+                        currentMachine = machine;
+                        state = machine.playerState;
+                    }
+
+                    keyInput = KeyCode.None;
+                    break;
+                }
             }
 
         }
@@ -109,3 +196,9 @@ public enum PlayerState
     Roll,
 }
 
+public enum PlayerPos
+{
+    Left,
+    Center,
+    Right
+}

@@ -36,7 +36,9 @@ public class PlayerStateMachine_Jump : PlayerStateMachine
                 rb.velocity = new Vector3(rb.velocity.x, 
                                           0, 
                                           rb.velocity.z);
+                Debug.Log($"JumpForce{Vector3.up * jumpForce}");
                 rb.AddForce(Vector3.up * jumpForce, ForceMode.Impulse);
+                animator.Play("Jump");
                 state = State.Casting;
                 break;
             case State.Casting:

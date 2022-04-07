@@ -13,7 +13,7 @@ public class PlayerStateMachine_Idle : PlayerStateMachine
             case State.Idle:
                 break;
             case State.Prepare:
-                animator.Play("Idle");
+                animator.Play("Run");
                 state = State.OnAction;
                 break;
             case State.Casting:
