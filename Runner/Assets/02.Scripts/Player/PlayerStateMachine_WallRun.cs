@@ -6,6 +6,7 @@ public class PlayerStateMachine_WallRun : PlayerStateMachine
 {
     private WallDetector1 wallDetector1;
     private Rigidbody rb;
+    private GroundDetector groundDetector;
 
     private float animationTime_Start;
     private float animationTime_Finish;
@@ -16,6 +17,7 @@ public class PlayerStateMachine_WallRun : PlayerStateMachine
     {
         base.Awake();
         wallDetector1 = GetComponentInChildren<WallDetector1>();
+        groundDetector= GetComponentInChildren<GroundDetector>();
         rb = GetComponent<Rigidbody>();
 
         RuntimeAnimatorController ac = animator.runtimeAnimatorController;
@@ -88,8 +90,10 @@ public class PlayerStateMachine_WallRun : PlayerStateMachine
                 }
                 break;
             case State.Finish:
-                nextState = PlayerState.Run;
-                state = State.Prepare;
+                {
+                    nextState = PlayerState.Idle;
+
+                }
                 break;
             default:
                 break;
