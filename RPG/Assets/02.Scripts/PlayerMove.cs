@@ -1,14 +1,10 @@
-﻿using System;
-using System.Collections.Generic;
-using UnityEngine;
+﻿using UnityEngine;
 
 public class PlayerMove : MonoBehaviour
 {
     [SerializeField] private float moveSpeed = 2;
     [SerializeField] private float gravity = 9.81f;
     private Vector3 _move;
-
-    
     private CharacterController characterController;
 
     private void Awake()
@@ -17,11 +13,12 @@ public class PlayerMove : MonoBehaviour
     }
     private void Update()
     {
-        if (!characterController.isGrounded == false)
+        if (characterController.isGrounded == false)
             _move += Vector3.down * gravity;
 
         characterController.Move(_move * Time.deltaTime);
     }
+
     public void SetMove(float x, float z)
     {
         _move.x = x * moveSpeed;
@@ -36,7 +33,7 @@ public class PlayerMove : MonoBehaviour
     public void SetMove(Vector3 move)
     {
         _move = new Vector3(move.x * moveSpeed,
-                            move.y, 
+                            move.y,
                             move.z * moveSpeed);
     }
 }

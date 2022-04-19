@@ -1,11 +1,11 @@
+
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 
 public class PlayerStateMachine_Jump : PlayerStateMachine
 {
-    public float deltaMove = 0.5f;
-    private CharacterController controller;
+    public float deltaMove = 0.01f;
     private PlayerMove playerMove;
 
     private float detectGroundTimeLimit = 1f;
@@ -16,20 +16,17 @@ public class PlayerStateMachine_Jump : PlayerStateMachine
     public override void Awake()
     {
         base.Awake();
-        controller = GetComponent<CharacterController>();
         playerMove = GetComponent<PlayerMove>();
     }
 
     public override bool IsExecuteOK()
     {
-        bool isOK = false;
-        if ((playerStateMachineManager.playerState == PlayerState.Idle ||
-           playerStateMachineManager.playerState == PlayerState.Move) &&
-           controller.isGrounded)
-        {
-            isOK = true;
-        }
-        return isOK;
+        if ((manager.playerState == PlayerState.Idle ||
+             manager.playerState == PlayerState.Move) &&
+             controller.isGrounded &&
+             playerAnimator.IsClipPlaying("Movement"))
+            return true;
+        return false;
     }
 
     public override PlayerState Workflow()
@@ -53,25 +50,25 @@ public class PlayerStateMachine_Jump : PlayerStateMachine
                     state = State.Finish;
                 else
                     detectGroundTimer -= Time.deltaTime;
+
                 playerMove.SetMove(deltaMove);
                 break;
-                case State.OnAction:
+            case State.OnAction:
                 if (controller.velocity.y < 0)
-                {
                     playerAnimator.SetTrigger("doFall");
-                }
-                if (controller.isGrounded)
+                if (controller.isGrounded &&
+                    playerAnimator.IsClipPlaying("Jump_Down"))
                     state++;
 
-                if (jumpUpTimer < 0)
+
+                if (jumpUpTimer > 0)
                 {
                     playerMove.SetMove(deltaMove);
-                    jumpUpTime -= Time.deltaTime;
+                    jumpUpTimer -= Time.deltaTime;
                 }
-                 break;
+                break;
             case State.Finish:
-                nextState = PlayerState.Idle;
-                state = State.Idle;
+                nextState = PlayerState.Move;
                 break;
             default:
                 break;
@@ -80,3 +77,5 @@ public class PlayerStateMachine_Jump : PlayerStateMachine
         return nextState;
     }
 }
+
+

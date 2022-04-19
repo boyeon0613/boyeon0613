@@ -7,54 +7,88 @@ public class PlayerStateMachineManager : MonoBehaviour
     public PlayerState playerState;
 
     [SerializeField] private Transform cam;
-    Transform tr;
+    private Transform tr;
     private PlayerMove playerMove;
-    private Animator animator;
     private PlayerAnimator playerAnimator;
-    private PlayerStateMachine_Jump jumpMachine;
     private CharacterController characterController;
 
-    
+    private PlayerStateMachine[] machines;
+    private PlayerStateMachine currentMachine;
 
     private void Awake()
     {
-        tr=GetComponent<Transform>();
-        playerMove=GetComponent<PlayerMove>(); 
-        animator=GetComponent<Animator>();
+        tr = GetComponent<Transform>();
+        playerMove = GetComponent<PlayerMove>();
         playerAnimator = GetComponent<PlayerAnimator>();
-        jumpMachine = GetComponent<PlayerStateMachine_Jump>();
+        characterController = GetComponent<CharacterController>();
+        machines = GetComponents<PlayerStateMachine>();
+        currentMachine = machines[0];
     }
 
     private void Update()
     {
-        //movement
+        // movement
         float h = Input.GetAxis("Horizontal");
         float v = Input.GetAxis("Vertical");
 
-        animator.SetFloat("h", h);
-        animator.SetFloat("v", v);
+        playerAnimator.SetFloat("h", h);
+        playerAnimator.SetFloat("v", v);
 
-        tr.rotation = Quaternion.Euler(0,cam.eulerAngles.y,0);
+        tr.rotation = Quaternion.Euler(0, cam.eulerAngles.y, 0);
         Vector3 move = cam.rotation * new Vector3(h, 0, v);
         playerMove.SetMove(move.x, move.z);
 
-        //Jump
+        // Jump
         if (Input.GetKey(KeyCode.Space))
+            ChangePlayerState(PlayerState.Jump);
+
+        // Attack
+        if (Input.GetMouseButton(0))
         {
-            if (jumpMachine.IsExecuteOK())
+            if(currentMachine.playerState == PlayerState.Attack && 
+                currentMachine.isFinish &&
+                playerAnimator.GetBool("attackComboOn"))
             {
-                jumpMachine.Execute();
+                currentMachine.ForceStop();
+                currentMachine.Execute();
+            }
+
+            ChangePlayerState(PlayerState.Attack);
+        }
+        UpdatePlayerState();
+    }
+
+    private void UpdatePlayerState()
+    {
+        if (currentMachine != null)
+            ChangePlayerState(currentMachine.Workflow());
+    }
+
+    public void ChangePlayerState(PlayerState newState)
+    {
+        if (playerState == newState) return;
+
+        // 바꾸려는 머신 검색
+        foreach (var sub in machines)
+        {
+            if (sub.playerState == newState &&
+                sub.IsExecuteOK()) // 변경하려는 머신 실행가능하면
+            {
+                currentMachine.ForceStop(); // 현재 돌아가는 머신 중단
+                currentMachine = sub; // 현재 머신 갱신
+                currentMachine.Execute(); // 현재 머신 가동
+                playerState = newState; // 상태 변경
+                return;
             }
         }
-        jumpMachine.Workflow();
     }
 
 }
+
 public enum PlayerState
 {
     Idle,
     Move,
-    Jump
+    Jump,
+    Attack
 }
-
-

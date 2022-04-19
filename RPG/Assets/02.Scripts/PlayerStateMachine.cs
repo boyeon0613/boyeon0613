@@ -6,12 +6,24 @@ public class PlayerStateMachine : MonoBehaviour
 {
     public State state;
     public PlayerState playerState;
-    public PlayerAnimator playerAnimator;
-    public PlayerStateMachineManager playerStateMachineManager;
+
+    [HideInInspector] public PlayerStateMachineManager manager;
+    [HideInInspector] public CharacterController controller;
+    [HideInInspector] public PlayerAnimator playerAnimator;
+
+    public bool isFinish
+    {
+        get
+        {
+            return state == State.Finish ? true : false;
+        }
+    }
+
     public virtual void Awake()
     {
         playerAnimator = GetComponent<PlayerAnimator>();
-        playerStateMachineManager = GetComponent<PlayerStateMachineManager>();
+        manager = GetComponent<PlayerStateMachineManager>();
+        controller=GetComponent<CharacterController>();
     }
     public virtual bool IsExecuteOK()
     {
@@ -46,7 +58,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public virtual void ForceStop()
     {
-        state = State.Idle;
+        state = State.Prepare;
     }
 
     public virtual void UpdateState()

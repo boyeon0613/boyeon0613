@@ -398,8 +398,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 274b7981744cd104b8013154ba2e6cca, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 2
-  gravity: 9.81
+  moveSpeed: 5
+  gravity: 0.981
 --- !u!143 &1302654068
 CharacterController:
   m_ObjectHideFlags: 0
@@ -541,8 +541,10 @@ GameObject:
   - component: {fileID: 1302654068}
   - component: {fileID: 1302654067}
   - component: {fileID: 1728051893}
+  - component: {fileID: 1728051895}
   - component: {fileID: 1728051892}
   - component: {fileID: 1728051894}
+  - component: {fileID: 1728051896}
   m_Layer: 9
   m_Name: Magician
   m_TagString: Untagged
@@ -563,10 +565,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   state: 0
-  playerState: 0
-  playerAnimator: {fileID: 0}
-  playerStateMachineManager: {fileID: 0}
-  deltaMove: 0.01
+  playerState: 2
+  manager: {fileID: 1728051893}
+  controller: {fileID: 0}
+  playerAnimator: {fileID: 1728051894}
+  deltaMove: 100
 --- !u!114 &1728051893
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -593,3 +596,37 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: eab1a0871d8d64641aa75272c1328665, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &1728051895
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728051891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3f59192ed38cea44995b0875096d2bbc, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  playerState: 1
+  manager: {fileID: 0}
+  controller: {fileID: 0}
+  playerAnimator: {fileID: 0}
+--- !u!114 &1728051896
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1728051891}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 41f0aadb5c473d642bc3612952888c28, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  state: 0
+  playerState: 3
+  manager: {fileID: 0}
+  controller: {fileID: 0}
+  playerAnimator: {fileID: 0}
