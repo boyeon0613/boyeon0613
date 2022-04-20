@@ -58,7 +58,7 @@ public class PlayerStateMachine : MonoBehaviour
 
     public virtual void ForceStop()
     {
-        state = State.Prepare;
+        state = State.Idle;
     }
 
     public virtual void UpdateState()
