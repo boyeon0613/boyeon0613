@@ -16,28 +16,28 @@ TagManager:
   - 
   - Skybox
   - Player
-  - PostProcessing
-  - SetDressing
+  - Monster
   - 
   - 
-  - Vehicles
-  - Navmesh
-  - Environment
-  - Characters
-  - Vegetation
-  - Effects
-  - Ragdoll
-  - WaterGeometry
+  - 
+  - 
+  - 
+  - Item
+  - itemCollision
+  - 
+  - 
+  - 
+  - Ground
   - Terrain
   - Enemy
-  - Cameras
-  - Props
-  - Avoid
-  - CameraCollider
-  - Collider
-  - Checkpoint
-  - DoNotDraw
-  - Level
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
+  - 
   m_SortingLayers:
   - name: Default
     uniqueID: 0
