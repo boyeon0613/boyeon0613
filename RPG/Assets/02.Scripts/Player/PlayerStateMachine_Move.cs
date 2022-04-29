@@ -5,6 +5,11 @@ using UnityEngine;
 public class PlayerStateMachine_Move : PlayerStateMachine
 {
 
+    public override void Awake()
+    {
+        base.Awake();
+    }
+
     public override bool IsExecuteOK()
     {
         if (controller.isGrounded)

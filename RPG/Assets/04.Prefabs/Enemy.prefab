@@ -12,7 +12,7 @@ GameObject:
   - component: {fileID: 3378314131569541898}
   - component: {fileID: 1055948801930547753}
   - component: {fileID: 520737091301359262}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: EyeRight
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -108,6 +108,7 @@ GameObject:
   - component: {fileID: 2351245726087355419}
   - component: {fileID: 8612156278814839903}
   - component: {fileID: 1049119019041262270}
+  - component: {fileID: 329849144627053177}
   m_Layer: 5
   m_Name: EnemyUI
   m_TagString: Untagged
@@ -196,6 +197,19 @@ MonoBehaviour:
   m_BlockingMask:
     serializedVersion: 2
     m_Bits: 4294967295
+--- !u!114 &329849144627053177
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1238349188611807376}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ec6ecee56e062e4b8ac847fca1785c1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  hpBar: {fileID: 8601696042265652103}
 --- !u!1 &3093053274639997182
 GameObject:
   m_ObjectHideFlags: 0
@@ -207,7 +221,7 @@ GameObject:
   - component: {fileID: 4431391669616656469}
   - component: {fileID: 8601696042265652103}
   m_Layer: 5
-  m_Name: Slider
+  m_Name: HpBar
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -373,7 +387,7 @@ GameObject:
   - component: {fileID: 1644569734923938617}
   - component: {fileID: 160668809176224830}
   - component: {fileID: 4811447908072603427}
-  m_Layer: 0
+  m_Layer: 23
   m_Name: EyeLeft
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -694,7 +708,7 @@ GameObject:
   - component: {fileID: 9165231098355608442}
   - component: {fileID: 2951833014743127889}
   - component: {fileID: 4379186341902143647}
-  m_Layer: 10
+  m_Layer: 23
   m_Name: Enemy
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -809,6 +823,11 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   hpMax: 50
+  _hp: 0
+  dropItems:
+  - {fileID: 11400000, guid: 4744fe9c40765a8468fc3d18315461c1, type: 2}
+  - {fileID: 11400000, guid: c63a0480a391d2c4d9370e1b386a4ace, type: 2}
+  enemyUI: {fileID: 329849144627053177}
 --- !u!114 &4379186341902143647
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -827,5 +846,5 @@ MonoBehaviour:
   aiBehaviorTimeMin: 1
   aiBehaviorTime: 0
   aiBehaviorTimer: 0
-  moveSpeed: 5
+  moveSpeed: 0
   jumpForce: 3

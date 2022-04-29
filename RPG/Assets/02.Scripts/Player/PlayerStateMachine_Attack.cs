@@ -11,7 +11,14 @@ public class PlayerStateMachine_Attack : PlayerStateMachine
     private float comboTime;
     private float comboTimer;
     private int comboCount;
-    private Coroutine comboCoroutine = null;
+    public float damage = 30f;
+    private Weapon weapon;
+
+    public override void Awake()
+    {
+        base.Awake();
+        weapon = GetComponentInChildren<Weapon>();
+    }
 
     private void Start()
     {
@@ -40,6 +47,7 @@ public class PlayerStateMachine_Attack : PlayerStateMachine
             case State.Prepare:
                 comboTimer = comboTime = GetComboTime();
                 playerAnimator.SetTrigger("doAttack");
+                weapon.doCasting = true;
                 state++;
                 break;
             case State.Casting:
@@ -47,12 +55,17 @@ public class PlayerStateMachine_Attack : PlayerStateMachine
                 if (playerAnimator.IsClipPlaying(GetClipName()))
                 {
                     comboCount++;
-                    playerAnimator.SetInt("attackComboCount", comboCount);
+                    playerAnimator.SetInt("attackComboCount", 0);
+
+                    //캐스팅 동안 무기에 닿은 모든 타겟 가져옴
+                    foreach (var target in weapon.GetTargets())
+                    {
+                        //타겟이 에너미이면 다치게 함
+                        if(target.TryGetComponent(out Enemy enemy))
+                            enemy.Hurt(damage); 
+                    }
+                    weapon.doCasting=false;
                     state++;
-                }
-                else
-                {
-                    Debug.Log($"stocked : casting on {GetClipName()}, combo count {comboCount}");
                 }
                 break;
             case State.OnAction:
@@ -60,20 +73,8 @@ public class PlayerStateMachine_Attack : PlayerStateMachine
                 // 마우스입력 들어오면 그다음 콤보 실행 
                 // 안들어오면 무브먼트로 돌아감
 
-                if (Input.GetMouseButton(0))
-                {
-                    if (comboTimer < 1f &&
-                        comboCount < 3)
-                    {
-                        state = State.Prepare;
-                    }
-                }
-
-                if (comboTimer < 0.9f)
-                {
-                    if (state != State.Prepare)
-                        state++;
-                }
+             
+                state++;
                 break;
             case State.Finish:
                 nextState = PlayerState.Move;

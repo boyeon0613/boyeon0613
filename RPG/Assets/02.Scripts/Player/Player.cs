@@ -5,8 +5,7 @@ using UnityEngine;
 public class Player : MonoBehaviour
 {
     public float hpMax;
-    public float _hp;
-
+    private float _hp;
     public float hp
     {
         set
@@ -29,12 +28,11 @@ public class Player : MonoBehaviour
         {
             return _hp;
         }
+
     }
 
-
     public float mpMax;
-    public float _mp;
-
+    private float _mp;
     public float mp
     {
         set
@@ -49,7 +47,7 @@ public class Player : MonoBehaviour
 
             if (PlayerUI.instance != null)
             {
-                PlayerUI.instance.SetHPBar(_mp / mpMax);
+                PlayerUI.instance.SetMPBar(_mp / mpMax);
             }
         }
 
@@ -57,12 +55,21 @@ public class Player : MonoBehaviour
         {
             return _mp;
         }
+
     }
 
     private void Awake()
     {
         _hp = hpMax;
-        _mp = mpMax;
     }
+
+
+    //private void OnTriggerStay(Collider other)
+    //{
+    //  if (other.gameObject.layer == LayerMask.NameToLayer("Item"))
+    //     {
+    //      other.gameObject.GetComponent<ItemController>().PickUp(this);
+    //     }
+    //}
 
 }
