@@ -1,0 +1,126 @@
+using System.Collections;
+using System.Collections.Generic;
+using UnityEngine;
+
+public class ObjectPool : MonoBehaviour
+{
+    private static ObjectPool _instance;
+    public static ObjectPool instance
+    {
+        get
+        {
+            if (_instance == null)
+                _instance = Instantiate(Resources.Load<ObjectPool>("ObjectPool"));
+            return _instance;
+        }
+    }
+    List<PoolElement> poolElements = new List<PoolElement>();
+    List<GameObject> spawnedObjects = new List<GameObject>();
+    Dictionary<string, Queue<GameObject>> spawnedQueueDictionary = new Dictionary<string, Queue<GameObject>>();
+
+    public void AddPoolElement(PoolElement poolElement)
+    {
+        poolElements.Add(poolElement);
+    }
+
+    private void Start()
+    {
+        StartCoroutine(E_Start());
+    }
+    IEnumerator E_Start()
+    {
+        yield return new WaitUntil(() => TowerAssets.instance != null);
+        foreach (PoolElement poolElement in poolElements)
+        {
+            spawnedQueueDictionary.Add(poolElement.tag, new Queue<GameObject>());
+            for (int i = 0; i < poolElement.size; i++)
+            {
+                GameObject obj = CreateNewObject(poolElement.tag, poolElement.prefab);
+                ArrangePool(obj);
+            }
+        }
+
+    }
+    public static GameObject SpawnFromPool(string tag, Vector3 position) =>
+        instance.Spawn(tag, position);
+
+    private GameObject Spawn(string tag, Vector3 position)
+    {
+        if (!spawnedQueueDictionary.ContainsKey(tag))
+            throw new System.Exception($"Pool doesn't contains {tag}");
+       
+        Queue<GameObject> queue = spawnedQueueDictionary[tag];
+        if(queue.Count == 0)
+        {
+            foreach (var item in poolElements)
+            {
+                PoolElement poolElement = poolElements.Find(x => x.tag == tag);
+                GameObject obj = CreateNewObject(poolElement.tag, poolElement.prefab);
+                
+                ArrangePool(obj);
+            }
+        }
+        GameObject objectToSpawn = queue.Dequeue();
+        objectToSpawn.transform.position = position;
+        objectToSpawn.transform.rotation = Quaternion.identity;
+        objectToSpawn.SetActive(true);
+
+        return objectToSpawn;
+    }
+    private GameObject CreateNewObject(string tag, GameObject prefab)
+    {
+        GameObject obj = Instantiate(prefab, transform);
+        obj.name = tag;
+        obj.SetActive(false);
+        return obj;
+    }
+    public static void ReturnToPool(GameObject obj)
+    {
+        if (!instance.spawnedQueueDictionary.ContainsKey(obj.name))
+        {
+            throw new System.Exception($"Pool doesn't include {obj.name}");
+        }
+        instance.spawnedQueueDictionary[obj.name].Enqueue(obj);
+
+    }
+    public static int GetSpawnedObjectNumber(string tag)
+    {
+        int count = 0;
+        foreach(var go in instance.spawnedObjects)
+        {
+            if (go.name == tag &&
+                go.activeSelf)
+                count++;
+        }
+        return count;
+    }    
+
+    private void ArrangePool(GameObject obj)
+    {
+        bool isSameNameExist = false;
+        for(int i = 0;i < transform.childCount;i++)
+        {
+            if (i == transform.childCount - 1)
+            {
+                obj.transform.SetSiblingIndex(i);
+                spawnedObjects.Insert(i, obj);
+                break;
+            }
+            else if (transform.GetChild(i).name == obj.name)
+                isSameNameExist = true;
+            else if(isSameNameExist)
+            {
+                obj.transform.SetSiblingIndex(i);
+                spawnedObjects.Insert(i, obj);
+                break;
+            }
+        }
+    }
+}
+[System.Serializable] 
+public class PoolElement
+{
+    public string tag;
+    public GameObject prefab;
+    public int size;
+}
